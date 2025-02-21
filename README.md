@@ -1,36 +1,67 @@
-# Object Detection Using YOLO
+# Real-Time Object Detection Using YOLO
 
-## What is YOLO?
+## Overview
+This project implements real-time object detection using YOLO (You Only Look Once) with both a standard OpenCV interface and a Streamlit web interface.
 
-**YOLO (You Only Look Once)** is a widely used object detection algorithm that can detect multiple objects in an image or video in real time. Unlike traditional detection systems that look at different parts of an image multiple times, YOLO processes the entire image in one pass, making it faster and more efficient.
+## Requirements
+- Python 3.7+
+- OpenCV
+- Streamlit
+- NumPy
+- YOLO weights and configuration files
 
-YOLO divides the input image into grids and predicts bounding boxes and class probabilities for each grid, allowing for the detection of multiple objects simultaneously. This is useful for applications such as:
-- **Self-driving cars**: For detecting pedestrians, vehicles, and other obstacles.
-- **Surveillance**: For monitoring objects or people in real-time.
-- **Robotics**: For object recognition and interaction in dynamic environments.
+## Setup
 
-## How YOLO Works
-
-1. **Input Image**: YOLO takes an image and splits it into a grid.
-2. **Grid System**: Each grid cell predicts multiple bounding boxes and their associated confidence scores.
-3. **Class Predictions**: YOLO assigns class probabilities (e.g., car, dog, person) to each bounding box.
-4. **Non-Max Suppression**: Reduces overlapping bounding boxes to ensure the most confident predictions are kept.
-
-## Using YOLO
-
-### Step 1: Download YOLO Weights
-
-To use YOLO, you need the pre-trained weights file for the model. In this project, we use **YOLOv3-320**, a compact version of YOLOv3 that is smaller in size and faster in detection, though slightly less accurate than larger models.
-
-You can download the YOLOv3-320 weights file from the official YOLO website:
-- [Download YOLOv3-320 Weights](https://pjreddie.com/media/files/yolov3-tiny.weights)
-
-After downloading, place the weights file in a `weights/` directory within your project folder.
-
-### Step 2: Run Object Detection
-
-Once you have the weights downloaded and placed correctly, you can run object detection on images or videos.
-
-**Detect objects in an image**:
+1. **Clone the repository**
 ```bash
-python main.py --source path_to_image.jpg --weights weights/yolov3.weights
+git clone <repository-url>
+cd Real-Time-Object-Detection-using-YOLO-main
+```
+
+2. **Install dependencies**
+```bash
+pip install -r requirements.txt
+```
+
+3. **Download YOLO files**
+- Download YOLOv3 weights from: https://pjreddie.com/media/files/yolov3.weights
+- Download YOLOv3 config from: https://github.com/pjreddie/darknet/blob/master/cfg/yolov3.cfg
+- Download COCO names from: https://github.com/pjreddie/darknet/blob/master/data/coco.names
+
+Place these files in the project root directory.
+
+## Usage
+
+### Streamlit Interface
+```bash
+streamlit run app.py
+```
+This will open a web interface with:
+- Adjustable confidence threshold
+- Camera source selection
+- Start/Stop controls
+- Real-time video feed with object detection
+
+### Standard OpenCV Interface
+```bash
+python main.py
+```
+- Press 'q' to quit the application
+
+## Features
+- Real-time object detection
+- Multiple interface options (Streamlit/OpenCV)
+- Adjustable detection confidence
+- Support for multiple camera sources
+- Class probability display
+- Non-maximum suppression for better detection
+
+## Project Structure
+```
+├── app.py              # Streamlit interface
+├── main.py            # OpenCV interface
+├── requirements.txt   # Project dependencies
+├── yolov3.weights    # YOLO model weights
+├── yolov3.cfg        # YOLO model configuration
+└── coco.names        # Class names file
+```
